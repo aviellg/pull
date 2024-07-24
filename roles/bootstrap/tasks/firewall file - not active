@@ -1,0 +1,22 @@
+#UFW Setup
+#- name: UFW - Allow SSH connections
+#  ufw:
+#    rule: allow
+#    name: OpenSSH
+#- name: ufw default deny incoming
+#  ufw:
+#    default: deny (incoming)
+#    to_port: any  
+#    protocol: tcp
+#- name: ufw default allow outgoing
+#  ufw:
+#    default: allow (outgoing)
+#    to_port: any
+#    protocol: tcp
+#- name: Allow traffic from 192.168.14.0/24
+#  ufw:
+#    rule: allow
+#    name: "allow from 192.168.14.0/24"
+#    notify: restart ssh deamon
+#  
+#  

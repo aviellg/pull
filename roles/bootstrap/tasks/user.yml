@@ -1,0 +1,40 @@
+#wheel group - passwordless sudo
+- name: Make sure we have a 'wheel' group
+  group:
+    name: wheel
+    state: present
+- name: Allow 'wheel' group to have passwordless sudo
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    validate: '/usr/sbin/visudo -cf %s'
+#User + Key Setup
+- name: Ensure the necessary groupsexists
+  group:
+    name: "{{ item }}"
+    state: present
+  loop:
+      - "{{ bootstrap_admin_user }}"
+      - docker
+- name: Create a new regular user with sudo privileges
+  user:
+    name: "{{ bootstrap_admin_user }}"
+    state: present
+    groups: 
+      - wheel
+      - docker
+      - users
+
+    append: true
+    create_home: true
+    shell: /bin/bash
+- name: Chmod the user home directory
+  file:
+    path: "/home/{{ bootstrap_admin_user }}"
+    state: directory
+    mode: 0755
+    owner: "{{ bootstrap_admin_user }}"
+    group: "{{ bootstrap_admin_user }}"
+    recurse: yes

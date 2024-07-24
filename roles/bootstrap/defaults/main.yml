@@ -1,0 +1,4 @@
+---
+bootstrap_admin_user: aviellg
+bootstrap_copy_local_key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+bootstrap_sys_packages: [curl, nano, sudo, git, ufw, neofetch, python3-pip, qemu-guest-agent, aptitude ]
