@@ -1,0 +1,15 @@
+bootstrap_admin_user: autoadmin
+ansible_traefik_TZ: Asia/Jerusalem
+ansible_traefik_DOMAINNAME_1: gadka.online
+ansible_trafik_LOCAL_IPS: 127.0.0.1/32,10.0.0.0/8,192.168.0.0/16,172.16.0.0/12,192.168.14.0/12
+ansible_traefik_PUID: "{{ ansible_facts.user_uid }}"
+ansible_traefik_PGID: "{{ ansible_facts.user_gid }}"
+ansible_traefik_USERDIR: "/home/{{bootstrap_admin_user}}"
+ansible_traefik_DOCKERDIR: "/home/{{bootstrap_admin_user}}/docker"
+ansible_traefik_DATADIR: "/media/storage"
+ansible_traefik_HOSTNAME: "udms"
+ansible_traefik_CLOUDFLARE_IPS: 173.245.48.0/20,103.21.244.0/22,103.22.200.0/22,103.31.4.0/2
+ansible_traefik_http_username: aviellg
+ansible_traefik_http_password: 22082208
+ansible_traefik_basicauth_file: /home/{{bootstrap_admin_user}}/docker/secrets/basic_auth_credentials
+ansible_traefik_CLOUDFLARE_token: rOs8Io2YiB7MtvqDAnLq3cpk-GU4-RykwCU9xNw8
