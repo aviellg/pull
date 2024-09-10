@@ -1,0 +1,13 @@
+##########  role to install and configure traefik , 
+pretasks :
+roles required : bootstrap, docker-prep 
+actions before deployment : 
+- Proper DNS Records - A minimum of 2 records. A record pointing to WAN IP and CNAME record (or a wildcard (*)) pointing to the root domain.
+- set ssl encription to full , and disable proxy in cloudflare 
+- open port 443 and 80 in router and firewall 
+
+actions by role :
+- creating folders for traefik
+- copy files to machine (httpasswd, cf_dns_api_token, traefik.yml,  tls-opts.yml, middlewares-basic-auth.yml, middlewares-rate-limit.yml )
+- run "docker compose UDMTS" and traefik
+- after user need to enable cloudflare proxy
