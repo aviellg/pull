@@ -1,5 +1,5 @@
 - name: Run docker-compose with env file
-  dcommunity.docker.docker_compose:
+  community.docker.docker_compose:
     project_name: udms
     file: docker-compose-udms.yml
     env_file: "{{ playbook_dir }}/files/env"
