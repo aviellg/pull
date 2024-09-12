@@ -2,11 +2,6 @@
 - hosts: localhost
   connection: local
   become: true
-  pre_tasks:
-  - name: Install Ansible roles and collections
-    ansible.builtin.command:
-      cmd: ansible-galaxy install -r ../requirements.yml
-    when: install_requirements is defined
   collections:
   - community.docker
   roles:
