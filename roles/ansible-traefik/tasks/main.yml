@@ -1,10 +1,11 @@
 ---
-- name: Install community.docker collection
-  local_action:
-    module: command
-    args: ansible-galaxy collection install community.docker
-  become: yes
-  run_once: true
-  
+- pre_tasks:
+  - name: Install community.docker collection
+    local_action:
+      module: command
+      args: ansible-galaxy collection install community.docker
+    become: yes
+    run_once: true
+
 - import_tasks: run-compose.yml
 - import_tasks: prep-folder-files.yml
