@@ -1,4 +1,4 @@
-- name: Install community.docker collection
+- name: Install   collection
   become: yes
   run_once: true
   ansible.builtin.shell:
