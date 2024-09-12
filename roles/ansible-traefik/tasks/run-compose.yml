@@ -1,9 +1,8 @@
 - name: Install community.docker collection
   become: yes
   run_once: true
-  ansible.builtin.galaxy:
-    name: community.docker
-    state: present
+  ansible.builtin.shell:
+    cmd: ansible-galaxy collection install community.docker
 
 - name: Run docker-compose with env file
   community.docker.docker_compose_v2:
