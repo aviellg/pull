@@ -2,6 +2,12 @@
 - hosts: localhost
   connection: local
   become: true
+  tasks:
+    - block:
+      - name: Install module
+        command: ansible-galaxy collection install <module_name>
+        ignore_errors: yes
+      - include: local_tasks.yml  # or whatever file you want to include
   collections:
   - community.docker
   roles:
