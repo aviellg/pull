@@ -1,0 +1,14 @@
+- name: Update and upgrade the OS
+  apt:
+    update_cache: yes 
+    upgrade: dist
+  register: upgrade_result
+
+- name: Reboot if the OS was upgraded 
+  reboot:
+  when: upgrade_result.changed
+
+- name: Install required software
+  apt:
+    name: "{{ bootstrap_install_list }}"
+    state: present
