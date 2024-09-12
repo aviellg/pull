@@ -1,6 +1,4 @@
-- name: Prepare Traefik 3 folders and files
-  become: yes
-  tasks:
+
     - name: Create Traefik 3 folders
       file:
         path: "{{ item }}"
