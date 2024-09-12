@@ -3,4 +3,4 @@
     project_name: udm
     project_SRC: {{ playbook_dir }}/files
     file: docker-compose-udms.yml
-    env_file: "{{ playbook_dir }}/files/env"
+    env_file: {{ playbook_dir }}/files/env
