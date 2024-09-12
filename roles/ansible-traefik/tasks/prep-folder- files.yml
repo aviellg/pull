@@ -1,0 +1,49 @@
+- name: Prepare Traefik 3 folders and files
+  become: yes
+  tasks:
+    - name: Create Traefik 3 folders
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - /home/{{ bootstrap_admin_user }}/docker/appdata/traefik3
+        - /home/{{ bootstrap_admin_user }}/docker/appdata/traefik3/acme
+        - /home/{{ bootstrap_admin_user }}/docker/appdata/traefik3/rules
+        - /home/{{ bootstrap_admin_user }}/docker/appdata/traefik3/rules/udms
+        - /home/{{ bootstrap_admin_user }}/docker/logs/udms
+        - /home/{{ bootstrap_admin_user }}/docker/logs/udms/traefik
+  
+    - name: Create acme.json file with proper permissions
+      file:
+        path: /home/{{ bootstrap_admin_user }}/docker/appdata/traefik3/acme/acme.json
+        state: touch
+        mode: '0600'
+  
+    - name: Create log files for Traefik
+      file:
+        path: "{{ item }}"
+        state: touch
+      loop:
+        - /home/{{ bootstrap_admin_user }}/docker/logs/udms/traefik/traefik.log
+        - /home/{{ bootstrap_admin_user }}/docker/logs/udms/traefik/access.log
+##### create  Secret files 
+    - name: Create htpasswd file template
+      template:
+        src: templates/htpasswd.j2
+        dest: /home/{{bootstrap_admin_user}}/docker/secrets/basic_auth_credentials
+        mode: '0640'
+    - name: Create cloudflare api token  file template
+      template:
+        src: templates/cf_dns_api_token.j2
+        dest: /home/{{bootstrap_admin_user}}/docker/secrets/cf_dns_api_token
+        mode: '0640'
+    - name: copy tls-opts.yml
+      template:
+        src: templates/tls-opts.yml
+        dest: /home/{{bootstrap_admin_user}}/docker/appdata/traefik3/rules/udms/tls-opts.yml
+    - name: copy middlewares-basic-auth.yml
+      template:
+        src: templates/tls-opts.yml
+        dest: /home/{{bootstrap_admin_user}}/docker/appdata/traefik3/rules/udms/middlewares-basic-auth.yml
+    
