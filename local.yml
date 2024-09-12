@@ -1,0 +1,7 @@
+- hosts: localhost
+  connection: local
+  become: true
+  roles:
+  - bootstrap
+  - { role: docker-prep, tags: ['docker'] }
+  - { role: ansible-traefik, tags: ['traefik'] }

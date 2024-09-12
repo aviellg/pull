@@ -1,0 +1,31 @@
+- name: Install acl package
+  apt:
+    name: acl
+    state: present
+  become: yes
+
+- name: Set permissions on docker folder
+  file:
+    path: /home/{{ bootstrap_admin_user }}/docker
+    mode: '0775'
+  become: yes
+
+- name: Set facl permissions on docker folder
+  acl:
+    path: /home/{{ bootstrap_admin_user }}/docker
+    entity: "{{ bootstrap_admin_user }}"
+    etype: user
+    permissions: rwx
+    state: present
+    recursive: yes
+  become: yes
+
+- name: Set facl permissions on docker folder for docker group
+  acl:
+    path: /home/{{ bootstrap_admin_user }}/docker
+    entity: docker
+    etype: group
+    permissions: rwx
+    state: present
+    recursive: yes
+  become: yes

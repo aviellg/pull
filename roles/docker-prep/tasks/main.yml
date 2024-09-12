@@ -1,0 +1,6 @@
+- import_role:
+    name: ansible-role-pip
+- import_role:
+    name: ansible-role-docker
+- include_tasks: docker-folders.yml
+- include_tasks: ACL-permissions.yml 

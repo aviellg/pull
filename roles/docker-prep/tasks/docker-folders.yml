@@ -1,0 +1,77 @@
+
+  - name: Create Docker root folder
+    file:
+      path: "/home/{{ bootstrap_admin_user }}/docker"
+      state: directory
+      owner: "{{ bootstrap_admin_user }}"
+      group: "{{ bootstrap_admin_user }}"
+
+  - name: Create appdata folder
+    file:
+      path: "/home/{{ bootstrap_admin_user }}/docker/appdata"
+      state: directory
+      owner: "{{ bootstrap_admin_user }}"
+      group: "{{ bootstrap_admin_user }}"
+
+  - name: Create compose folder
+    file:
+      path: "/home/{{ bootstrap_admin_user }}/docker/compose"
+      state: directory
+      owner: "{{ bootstrap_admin_user }}"
+      group: "{{ bootstrap_admin_user }}"
+
+  - name: Create logs folder
+    file:
+      path: "/home/{{ bootstrap_admin_user }}/docker/logs"
+      state: directory
+      owner: "{{ bootstrap_admin_user }}"
+      group: "{{ bootstrap_admin_user }}"
+
+  - name: Create scripts folder
+    file:
+      path: "/home/{{ bootstrap_admin_user }}/docker/scripts"
+      state: directory
+      owner: "{{ bootstrap_admin_user }}"
+      group: "{{ bootstrap_admin_user }}"
+
+  - name: Create secrets folder
+    file:
+      path: "/home/{{ bootstrap_admin_user }}/docker/secrets"
+      state: directory
+      owner: root
+      group: root
+    become: yes
+    become_user: root
+    become_method: sudo
+  - name: Set permissions on secrets folder
+    file:
+      path: "/home/{{ bootstrap_admin_user }}/docker/secrets"
+      mode: '0600'
+
+  - name: Create shared folder
+    file:
+      path: "/home/{{ bootstrap_admin_user }}/docker/shared"
+      state: directory
+      owner: "{{ bootstrap_admin_user }}"
+      group: "{{ bootstrap_admin_user }}"
+
+  - name: Create .env file
+    file:
+      path: "/home/{{ bootstrap_admin_user }}/docker/.env"
+      state: touch
+      owner: root
+      group: root
+    become: yes
+    become_user: root
+    become_method: sudo
+  - name: Set permissions on .env file
+    file:
+      path: "/home/{{ bootstrap_admin_user }}/docker/.env"
+      mode: '0600'
+
+  - name: Create docker-compose-udms.yml file
+    file:
+      path: "/home/{{ bootstrap_admin_user }}/docker/docker-compose-udms.yml"
+      state: touch
+      owner: "{{ bootstrap_admin_user }}"
+      group: "{{ bootstrap_admin_user }}"
