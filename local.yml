@@ -1,3 +1,4 @@
+---
 - hosts: localhost
   connection: local
   become: true
@@ -6,10 +7,9 @@
     ansible.builtin.command:
       cmd: ansible-galaxy install -r ../requirements.yml
     when: install_requirements is defined
+  collections:
+  - community.docker
   roles:
   - bootstrap
   - { role: docker-prep, tags: ['docker'] }
-  - role: my_role
-    tags: traefik
-    collections:
-      - community.docker
+  - { role: my_role, tags: ['traefik'] }
