@@ -2,11 +2,14 @@
   connection: local
   become: true
   pre_tasks:
-    - name: Install Ansible roles and collections
-      ansible.builtin.command:
-        cmd: ansible-galaxy install -r ../requirements.yml
-      when: install_requirements is defined
+  - name: Install Ansible roles and collections
+    ansible.builtin.command:
+      cmd: ansible-galaxy install -r ../requirements.yml
+    when: install_requirements is defined
   roles:
   - bootstrap
   - { role: docker-prep, tags: ['docker'] }
-  - { role: ansible-traefik, tags: ['traefik'] }
+  - role: my_role
+    tags: traefik
+    collections:
+      - community.docker
