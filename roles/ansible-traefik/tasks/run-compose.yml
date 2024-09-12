@@ -1,4 +1,11 @@
 - name: Run docker-compose with env file
+  pre_tasks:
+  - name: Install community.docker collection
+    local_action:
+      module: command
+      args: ansible-galaxy collection install community.docker
+    become: yes
+    run_once: true
   community.docker.docker_compose_v2:
     project_name: udm
     project_SRC: '{{ playbook_dir }}/files'
