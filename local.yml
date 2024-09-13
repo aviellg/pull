@@ -1,8 +1,7 @@
 ---
-  become: true
-  tasks:
-    - block:
-      - name: Install module
-        command: ansible-galaxy collection install <module_name>
-        ignore_errors: yes
-      - include: playbook.yml  # or whatever file you want to include
+tasks:
+  - block:
+    - name: Install module
+      command: ansible-galaxy collection install <module_name>
+      ignore_errors: yes
+    - include: playbook.yml  # or whatever file you want to include
