@@ -7,10 +7,4 @@
       - name: Install module
         command: ansible-galaxy collection install <module_name>
         ignore_errors: yes
-      - include: local_tasks.yml  # or whatever file you want to include
-  collections:
-  - community.docker
-  roles:
-  - bootstrap
-  - { role: docker-prep, tags: ['docker'] }
-  - { role: ansible-traefik, tags: ['traefik'] }
+      - include: playbook.yml  # or whatever file you want to include
