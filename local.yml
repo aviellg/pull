@@ -1,7 +1,7 @@
 ---
   - tasks:
     - block:
-      - name: Install module
-        command: ansible-galaxy collection install <module_name>
+      - name: Install community.docker module
+        command: ansible-galaxy collection install community.docker
         ignore_errors: yes
       - include: playbook.yml  # or whatever file you want to include
