@@ -3,7 +3,7 @@
   become: true
 
   tasks:
-  - name: Install community.docker collection
-    ansible.builtin.ansible_galaxy:
-      name: community.docker
-      source: galaxy
+- name: Install collection community.network
+  community.general.ansible_galaxy_install:
+    type: collection
+    name: community.docker
