@@ -1,6 +1,4 @@
 ---
-- hosts: localhost
-  connection: local
   become: true
   tasks:
     - block:
