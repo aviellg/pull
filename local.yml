@@ -1,9 +1,16 @@
 ---
-- name: Install community.docker collection
+---
+- hosts: localhost
+  connection: local
   become: true
 
-  tasks:
-- name: Install collection community.network
-  community.general.ansible_galaxy_install:
-    type: collection
-    name: community.docker
+  pre_tasks:
+  - name: Install community.docker collection
+    community.general.galaxy_collection:
+      name: community.docker
+      state: present
+      
+  roles:
+  - bootstrap
+  - { role: docker-prep, tags: ['docker'] }
+  - { role: ansible-traefik, tags: ['traefik'] }
