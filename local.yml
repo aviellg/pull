@@ -4,12 +4,12 @@
   become: true
 
   pre_tasks:
-- name: Install collection community.network
-  community.general.ansible_galaxy_install:
-    type: collection
-    name: community.docker
+  - name: Install community.docker collection
+    community.general.ansible_galaxy_install:
+      type: collection
+      name: community.docker
 
   roles:
   - bootstrap
-  - { role: docker-prep, tags: ['docker'] }
-  - { role: ansible-traefik, tags: ['traefik'] }
+  - docker-prep
+  - ansible-traefik
