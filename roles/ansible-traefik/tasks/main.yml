@@ -1,3 +1,3 @@
 ---
-- ansible.builtin.include: run-compose.yml
-- ansible.builtin.include: prep-folder-files.yml
+- ansible.builtin.import_tasks: run-compose.yml
+- ansible.builtin.import_tasks: prep-folder-files.yml
