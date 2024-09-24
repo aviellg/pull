@@ -1,9 +1,3 @@
-- name: Install   collection
-  become: yes
-  run_once: true
-  ansible.builtin.shell:
-    cmd: ansible-galaxy collection install community.docker
-
 - name: Run docker-compose with env file
   community.docker.docker_compose_v2:
     project_name: udm
