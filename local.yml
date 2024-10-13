@@ -11,6 +11,5 @@
 
   roles:
   - bootstrap
-    become: yes
   #- docker-prep
   #- ansible-traefik
